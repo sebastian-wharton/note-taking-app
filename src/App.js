@@ -51,17 +51,31 @@ const App = () => {
 		<div className='container'>
 			<header>CRUD App with Hooks</header>
 			<div className='title'>
-				<h2>Take a Note...</h2>
+				<h2>Make a note</h2>
 				<h2 className='h2'>Recent Notes</h2>
 			</div>
 			<div className='notes'>
 				<div className='new-note'>
-					<p>Title</p>
-					<hr />
-					<p>Note Content</p>
+					{editing ? (
+						<div>
+							<EditNoteForm
+								setEditing={setEditing}
+								currentUser={currentUser}
+								updateUser={updateUser}
+							/>
+						</div>
+					) : (
+						<div>
+							<AddUserForm addUser={addUser} />
+						</div>
+					)}
 				</div>
-				<AddUserForm addUser={addUser} />
-				<Notes users={users} />
+
+				<Notes
+					users={users}
+					editRow={editRow}
+					deleteUser={deleteUser}
+				/>
 			</div>
 		</div>
 	);

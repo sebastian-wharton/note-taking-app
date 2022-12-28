@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const EditNoteForm = (props) => {
 	const [user, setUser] = useState(props.currentUser);
+
+	useEffect(() => {
+		setUser(props.currentUser);
+	}, [props]);
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -17,27 +21,31 @@ const EditNoteForm = (props) => {
 				props.updateUser(user.id, user);
 			}}
 		>
-			<label>Name</label>
 			<input
 				type='text'
 				name='name'
+				className='title-input'
 				value={user.name}
 				onChange={handleInputChange}
+				placeholder='Title'
 			/>
-			<label>Username</label>
 			<input
 				type='text'
 				name='username'
+				className='body-input'
 				value={user.username}
 				onChange={handleInputChange}
+				placeholder='Body'
 			/>
-			<button>Update user</button>
-			<button
-				onClick={() => props.setEditing(false)}
-				className='button muted-button'
-			>
-				Cancel
-			</button>
+			<div className='buttons'>
+				<button className='update'>Update user</button>
+				<button
+					onClick={() => props.setEditing(false)}
+					className='cancel'
+				>
+					Cancel
+				</button>
+			</div>
 		</form>
 	);
 };

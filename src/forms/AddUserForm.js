@@ -10,33 +10,49 @@ const AddUserForm = (props) => {
 		console.log(event);
 	};
 
-	
-
 	return (
 		<form
 			onSubmit={(event) => {
 				event.preventDefault();
 				if (!user.name || !user.username) return;
-
 				props.addUser(user);
 				setUser(initialFormState);
 			}}
 		>
-			<label>Name</label>
 			<input
 				type='text'
 				name='name'
+			
 				value={user.name}
 				onChange={handleInputChange}
+				placeholder='Title'
 			/>
-			<label>Username</label>
+			<hr />
 			<input
 				type='text'
 				name='username'
+				className='body-input'
 				value={user.username}
 				onChange={handleInputChange}
+				placeholder='Body'
 			/>
-			<button>Add new user</button>
+			<div className='buttons'>
+				<button className='add'>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						fill='none'
+						viewBox='0 0 24 24'
+						strokeWidth={1.5}
+						stroke='currentColor'
+					>
+						<path
+							strokeLinecap='round'
+							strokeLinejoin='round'
+							d='M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z'
+						/>
+					</svg>
+				</button>
+			</div>
 		</form>
 	);
 };
